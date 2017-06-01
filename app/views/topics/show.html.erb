@@ -1,0 +1,26 @@
+<h1>Topics#show</h1>
+<p>Find me in app/views/topics/show.html.erb</p>
+
+<h1><%= @topic.name %></h1>
+<%= link_to "Edit topic", edit_topic_path, class: 'btn btn-success' unless !policy(@topic).edit? %>
+<div class="row">
+  <div class="col-md-8">
+    <p class="lead"><%= @topic.description %></p>
+    <% @posts.each do |post| %>
+      <div class="media">
+        <div class="media-body">
+          <h4 class="media-heading">
+            <%= link_to post.title, [@topic, post] %>
+          </h4>
+          <small>
+            submitted <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.name %><br />
+            <%= post.comments.count %> Comment
+          </small>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-md-4">
+    <%= link_to "New Post", new_topic_post_path(@topic), class: 'btn btn-success' unless !policy(Post.new).create? %>
+  </div>
+</div>

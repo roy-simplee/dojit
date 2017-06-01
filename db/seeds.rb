@@ -28,10 +28,20 @@ users = User.all
 
 # The `save` method then saves this User to the database.
 
+# Topics
+15.times do
+	Topic.create!(
+		name: Faker::Lorem.sentence,
+		description: Faker::Lorem.paragraph
+	)
+end
+topics = Topic.all
+
 # Create Posts
 50.times do
 	Post.create!(
 		user:   users.sample,
+		topic: topics.sample,
 		title: Faker::Lorem.sentence,
 		body: Faker::Lorem.paragraph)
 end
@@ -46,12 +56,31 @@ posts = Post.all
 		body: Faker::Lorem.paragraph)
 end
 
-user = User.first
-user.skip_reconfirmation!
-user.update_attributes!(
-	email: 'e@y.com',
+user = User.new(
+	name:     'Admin',
+	email:    'a@a.com',
+	password: 'password',
+	role: 'admin'
+)
+user.skip_confirmation!
+user.save!
+
+user = User.new(
+	name:     'Mod',
+	email:    'm@a.com',
+	password: 'password',
+	role: 'moderator'
+)
+user.skip_confirmation!
+user.save!
+
+user = User.new(
+	name:     'mem',
+	email:    'mem@a.com',
 	password: 'password'
 )
+user.skip_confirmation!
+user.save!
 
 puts "Seed finished"
 puts "#{User.count} users created"

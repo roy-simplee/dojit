@@ -2,5 +2,7 @@
 <p>Find me in app/views/posts/show.html.erb</p>
 
 <!-- <%= params.as_json %><br> -->
-<h1><%= @post.title %></h1</h1>
-<%= link_to "Edit", edit_post_path(@post), class: 'btn btn-success' unless !policy(@post).edit? %>
+<%= params.to_json %>
+<h1><%= @post.title %></h1>
+<p><%= @post.body %></p><br />
+<%= link_to "Edit", edit_topic_post_path(@topic, @post), class: 'btn btn-success' unless !policy(@post).edit? %>

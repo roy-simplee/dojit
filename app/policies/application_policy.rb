@@ -35,6 +35,7 @@ class ApplicationPolicy
   end
 
   def scope
+    # raise "I passed class"
     record.class
   end
 
