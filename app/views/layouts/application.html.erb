@@ -11,7 +11,7 @@
   <body>
   <div class="container">
     <% if current_user %>
-      Hello <%= current_user.name %>! <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+      Hello <%= link_to (current_user.name || current_user.email), edit_user_registration_path %>! <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
     <% end %>
     <ul class="nav nav-tabs">
       <li><%= link_to "Link1", root_path %></li>
