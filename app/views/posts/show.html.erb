@@ -4,5 +4,11 @@
 <!-- <%= params.as_json %><br> -->
 <%= params.to_json %>
 <h1><%= @post.markdown_title %></h1>
+<small>
+  <%= image_tag(@post.user.avatar.tiny.url) if @post.user.avatar? %>
+  submitted <%= time_ago_in_words(@post.created_at) %> ago by
+  <%= @post.user.name %>
+</small>
+
 <p><%= @post.markdown_body %></p><br />
-<%= link_to "Edit", edit_topic_post_path(@topic, @post), class: 'btn btn-success' unless !policy(@post).edit? %>
+<%= link_to "Edit", edit_topic_post_path(@topic, @post), class: 'btn btn-success' if policy(@post).edit? %>
