@@ -1,14 +1,27 @@
 <h1>Posts#show</h1>
 <p>Find me in app/views/posts/show.html.erb</p>
 
-<!-- <%= params.as_json %><br> -->
-<%= params.to_json %>
+<%= params.as_json %>
 <h1><%= @post.markdown_title %></h1>
 <small>
   <%= image_tag(@post.user.avatar.tiny.url) if @post.user.avatar? %>
-  submitted <%= time_ago_in_words(@post.created_at) %> ago by
-  <%= @post.user.name %>
+  submitted <%= time_ago_in_words(@post.created_at) %> ago by <%= @post.user.name %>
 </small>
 
 <p><%= @post.markdown_body %></p><br />
-<%= link_to "Edit", edit_topic_post_path(@topic, @post), class: 'btn btn-success' if policy(@post).edit? %>
+<%#= link_to "Edit", edit_topic_post_comment_path(@topic, @post), class: 'btn btn-success' if policy(@post).edit? %>
+<% @comments.each do |comment| %>
+  <div class="media">
+    <div class="media-body">
+      <p>
+        <%= comment.markdown_body %>
+        <small>submitted <%= time_ago_in_words(comment.created_at) %> ago by <%= comment.user.name %></small>
+      </p>
+    </div>
+  </div>
+<% end %>
+<%= will_paginate @comments %>
+
+<div class="col-md-4">
+  <%= link_to "New Comment", new_topic_post_comment_path(@topic, @post), class: 'btn btn-success' if policy(Comment.new).create? %>
+</div>
