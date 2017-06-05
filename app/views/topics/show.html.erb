@@ -2,7 +2,11 @@
 <p>Find me in app/views/topics/show.html.erb</p>
 
 <h1><%= @topic.name %></h1>
-<%= link_to "Edit topic", edit_topic_path, class: 'btn btn-success' unless !policy(@topic).edit? %>
+<div class="col-md-4">
+  <%= link_to "Edit topic", edit_topic_path, class: 'btn btn-success' if policy(@topic).edit? %>
+  <%= link_to "Delete topic", @topic, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } if policy(@topic).destroy? %>
+  <%= link_to "New Post", new_topic_post_path(@topic), class: 'btn btn-success' if policy(Post.new).create? %>
+</div>
 <div class="row">
   <div class="col-md-8">
     <p class="lead"><%= @topic.description %></p>
@@ -26,8 +30,5 @@
       </div>
     <% end %>
     <%= will_paginate @posts %>
-  </div>
-  <div class="col-md-4">
-    <%= link_to "New Post", new_topic_post_path(@topic), class: 'btn btn-success' if policy(Post.new).create? %>
   </div>
 </div>
