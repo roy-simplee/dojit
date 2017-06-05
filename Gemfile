@@ -67,3 +67,6 @@ gem 'mini_magick'
 gem 'fog'
 gem 'figaro'
 gem 'will_paginate'
+group :test do
+  gem 'rspec-rails'
+end
