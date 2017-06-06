@@ -10,19 +10,6 @@
 <p><%= @post.markdown_body %></p><br />
 <%= link_to "Edit", edit_topic_post_comment_path(@topic, @post), class: 'btn btn-success' if policy(@post).edit? %>
 <%= link_to "Delete post", [@topic, @post], method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } if policy(@post).destroy? %>
-<% @comments.each do |comment| %>
-  <div class="media">
-    <div class="media-body">
-      <p>
-        <%= comment.markdown_body %>
-        <small>submitted <%= time_ago_in_words(comment.created_at) %> ago by <%= comment.user.name %></small>
-        <%= link_to "Delete", [@topic, @post, comment], method: :delete %>
-      </p>
-    </div>
-  </div>
-<% end %>
+<%= render partial: @comments %>
 <%= will_paginate @comments %>
-
-<div class="col-md-4">
-  <%= link_to "New Comment", new_topic_post_comment_path(@topic, @post), class: 'btn btn-success' if policy(Comment.new).create? %>
-</div>
+<%= render partial: 'comments/form', locals: { topic: @topic, post: @post } %>
