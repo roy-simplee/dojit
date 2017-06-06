@@ -12,4 +12,4 @@
 <%= link_to "Delete post", [@topic, @post], method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } if policy(@post).destroy? %>
 <%= render partial: @comments %>
 <%= will_paginate @comments %>
-<%= render partial: 'comments/form', locals: { topic: @topic, post: @post } %>
+<%= render partial: 'comments/form', locals: { topic: @topic, post: @post } if current_user%>
