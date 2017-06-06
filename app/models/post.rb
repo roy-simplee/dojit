@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
 	has_many :comments, dependent: :destroy
+  has_many :votes, dependent: :destroy
 	belongs_to :user
   belongs_to :topic
 
@@ -7,8 +8,20 @@ class Post < ApplicationRecord
 
   validates :title, length: { minimum: 5 }, presence: true
   validates :body, length: { minimum: 20 }, presence: true
-  validates :topic, presence: true
-  validates :user, presence: true
+  # validates :topic, presence: true
+  # validates :user, presence: true
+
+  def up_votes
+    votes.where(value: 1).count
+  end
+
+  def down_votes
+    votes.where(value: -1).count
+  end
+
+  def points
+    votes.sum(:value)
+  end
 
   def markdown_title
     render_as_markdown title
