@@ -3,7 +3,7 @@
     <p>
       <%= comment.markdown_body %>
       <small>submitted <%= time_ago_in_words(comment.created_at) %> ago by <%= comment.user.name %></small>
-      <%= link_to "Delete", [@topic, @post, comment], method: :delete %>
+      <%= link_to "Delete", [@post, comment], method: :delete %>
     </p>
   </div>
 </div>

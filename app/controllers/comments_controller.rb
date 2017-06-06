@@ -1,7 +1,6 @@
 class CommentsController < ApplicationController
   def new
     @post = Post.find(params[:post_id])
-    @topic = @post.topic
     @comment = Comment.new
     authorize @comment
   end
@@ -10,7 +9,6 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = current_user.comments.build(user_params)
     @comment.post = @post
-    @topic = @post.topic
     authorize @comment
     if @comment.save
       flash[:notice] = "Comment was saved."

@@ -35,8 +35,11 @@ class ApplicationPolicy
   end
 
   def scope
-    # raise "I passed class"
     record.class
+  end
+
+  def can_moderate?
+    user.present? && (record.user == user || user.admin? || user.moderator?)
   end
 
   class Scope

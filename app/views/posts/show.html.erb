@@ -13,7 +13,7 @@
 </div>
 
 <p><%= @post.markdown_body %></p><br />
-<%= link_to "Edit", edit_topic_post_comment_path(@topic, @post), class: 'btn btn-success' if policy(@post).edit? %>
+<%= link_to "Edit", edit_topic_post_path(@topic, @post), class: 'btn btn-success' if policy(@post).edit? %>
 <%= link_to "Delete post", [@topic, @post], method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } if policy(@post).destroy? %>
 <%= render partial: @comments %>
 <%= will_paginate @comments %>
