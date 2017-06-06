@@ -11,7 +11,7 @@
     </ul>
   </div>
   <div class="col-md-8">
-    <%= form_for [topic, post, post.comments.new] do |f| %>
+    <%= form_for [post, post.comments.new] do |f| %>
       <% if post.comments.new.errors.any? %>
         <div class="alert alert-danger">
           <h4>There are <%= pluralize(post.comments.new.errors.count, "error") %>.</h4>
