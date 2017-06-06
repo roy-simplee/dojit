@@ -1,5 +1,5 @@
 <h1>Comments#new</h1>
-<p>Find me in app/views/comments/new.html.erb</p>
+<p>Find me in app/views/comments/_form.html.erb</p>
 
 <div class="row">
   <div class="col-md-4">
@@ -11,18 +11,18 @@
     </ul>
   </div>
   <div class="col-md-8">
-    <%= form_for [@topic, @post, @comment] do |f| %>
-      <% if @comment.errors.any? %>
+    <%= form_for [topic, post, post.comments.new] do |f| %>
+      <% if post.comments.new.errors.any? %>
         <div class="alert alert-danger">
-          <h4>There are <%= pluralize(@comment.errors.count, "error") %>.</h4>
+          <h4>There are <%= pluralize(post.comments.new.errors.count, "error") %>.</h4>
           <ul>
-            <% @comment.errors.full_messages.each do |msg| %>
+            <% post.comments.new.errors.full_messages.each do |msg| %>
               <li><%= msg %></li>
             <% end %>
           </ul>
         </div>
       <% end %>
-      <div class=<%= form_group_tag(@comment.errors) %>>
+      <div class=<%= form_group_tag(post.comments.new.errors) %>>
         <%= f.label :body %>
         <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter comment body" %>
       </div>
