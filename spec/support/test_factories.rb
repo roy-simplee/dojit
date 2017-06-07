@@ -9,12 +9,13 @@ def associated_post(options={})
     topic: Topic.create(name: 'Topic name'), 
     user: authenticated_user 
   }.merge(options)
+  Post.create(post_options)
 end
 
   def authenticated_user(options={})
-#     user = User.new(email: "email#{rand}@fake.com", password: 'password')
-  user_options = {email: "email#{rand}@fake.com", password: 'password'}.merge(options)
-  user = User.new(user_options)
+#   user = User.new(email: "email#{rand}@fake.com", password: 'password')
+    user_options = {email: "email#{rand}@fake.com", password: 'password'}.merge(options)
+    user = User.new(user_options)
     user.skip_confirmation!
     user.save
     user
