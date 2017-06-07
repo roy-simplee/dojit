@@ -3,7 +3,6 @@ module TestFactories
     # user = authenticated_user
     # topic = Topic.create(name: 'Topic name')
     # Post.create(title: 'Post title', body: 'Post bodies must be pretty long', topic: topic, user: user)
-    p "STILL OKAY?"
     post_options = { 
       title: 'Post title', 
       body: 'Post bodies must be pretty long.', 
@@ -11,7 +10,6 @@ module TestFactories
       user: authenticated_user 
     }.merge(options)
     Post.create(post_options)
-    p "SUCCESSFULLY CREATED"
   end
 
   def authenticated_user(options={})
