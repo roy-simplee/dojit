@@ -69,4 +69,5 @@ gem 'figaro'
 gem 'will_paginate'
 group :test do
   gem 'rspec-rails'
+  gem 'capybara'
 end

@@ -25,4 +25,4 @@
 <%= render partial: 'favorites/favorite', locals: { post: @post } %>
 <%= render partial: @comments %>
 <%= will_paginate @comments %>
-<%= render partial: 'comments/form', locals: { topic: @topic, post: @post } if current_user%>
+<%= render partial: 'comments/form', locals: { topic: @topic, post: @post } if current_user %>
