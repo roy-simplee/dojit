@@ -9,7 +9,7 @@ describe Post do
       @post = Post.new(title: 'post title', body: 'post b                         ody')
       post_user = double(votes: @post.votes)
       allow(@post).to receive(:user) {post_user}
-      p @post.to_json
+      # p @post.to_json
       @post.save
       3.times { @post.votes.create(value: 1) }
       2.times { @post.votes.create(value: -1) }
