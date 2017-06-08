@@ -13,6 +13,6 @@
   </small>
 </div>
 <%= render partial: 'favorites/favorite', locals: { post: @post } %>
-<%= render partial: 'comments/comment', collection: @comments %>
+<div class='js-comments'><%= render partial: 'comments/comment', collection: @comments %></div>
 <%= will_paginate @comments %>
-<%= render partial: 'comments/form', locals: { topic: @topic, post: @post } if current_user %>
+<div class='new-comment'><%= render partial: 'comments/form', locals: { post: @post } if current_user %></div>
